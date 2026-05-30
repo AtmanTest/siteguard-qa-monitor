@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: siteguard
+    env: python
+    buildCommand: pip install -r requirements.txt && playwright install chromium
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
